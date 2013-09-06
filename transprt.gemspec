@@ -3,7 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name = "transprt"
-  gem.version = '0.1.0'
+  gem.version = '0.1.2'
   gem.authors = ["ghn"]
   gem.email = ["ghugon@gmail.com"]
   gem.description = %q{Use the public transport Swiss API (open data).}
@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency 'rest_client'
-  gem.add_development_dependency 'json'
+  gem.add_dependency('rest-client', '~> 1.6.7')
+  gem.add_dependency('json', '~> 1.8.0')
 end
