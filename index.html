@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Transprt by ghn</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Transprt</h1>
+        <p>Use the Swiss public transport API (open data)</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/ghn/transprt" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/ghn/transprt/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/ghn/transprt/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="transprt" class="anchor" href="#transprt"><span class="octicon octicon-link"></span></a>transprt</h1>
+
+<p><a href="http://badge.fury.io/rb/transprt"><img src="https://badge.fury.io/rb/transprt.png" alt="Gem Version"></a>
+<a href="https://gemnasium.com/ghn/transprt"><img src="https://gemnasium.com/ghn/transprt.png" alt="Dependency Status"></a></p>
+
+<p>Use the Swiss public transport API (open data). <a href="http://transport.opendata.ch">http://transport.opendata.ch</a></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-bash"><pre>gem install transprt
+
+<span class="c">#run example</span>
+ruby example.rb
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="locations" class="anchor" href="#locations"><span class="octicon octicon-link"></span></a>Locations</h3>
+
+<p><a href="http://transport.opendata.ch/#locations">http://transport.opendata.ch/#locations</a></p>
+
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'transprt'</span>
+<span class="no">Transprt</span><span class="o">.</span><span class="n">locations</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'Geneva'</span>
+<span class="c1"># =&gt; [{"id"=&gt;"008501008", "name"=&gt;"Genève", "score"=&gt;"101", "coordinate"=&gt;{"type"=&gt;"WGS84", "x"=&gt;6.142455, "y"=&gt;46.210199}, "distance"=&gt;nil}]</span>
+</pre></div>
+
+<h3>
+<a name="connexions" class="anchor" href="#connexions"><span class="octicon octicon-link"></span></a>Connexions</h3>
+
+<p><a href="http://transport.opendata.ch/#connections">http://transport.opendata.ch/#connections</a></p>
+
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'transprt'</span>
+<span class="no">Transprt</span><span class="o">.</span><span class="n">connexions</span> <span class="ss">:from</span> <span class="o">=&gt;</span> <span class="s1">'Lausanne'</span><span class="p">,</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s1">'Geneva'</span>
+</pre></div>
+
+<h3>
+<a name="station-board" class="anchor" href="#station-board"><span class="octicon octicon-link"></span></a>Station board</h3>
+
+<p><a href="http://transport.opendata.ch/#stationboard">http://transport.opendata.ch/#stationboard</a></p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Display station board</span>
+<span class="no">Transprt</span><span class="o">.</span><span class="n">stationboard</span> <span class="ss">:station</span> <span class="o">=&gt;</span> <span class="s1">'Lausanne'</span>
+</pre></div>
+
+<h2>
+<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>MIT License (MIT)</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/ghn">ghn</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
