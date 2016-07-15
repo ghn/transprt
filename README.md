@@ -25,13 +25,13 @@ Transprt.locations :query => 'Geneva'
 # => [{"id"=>"008501008", "name"=>"Genève", "score"=>"101", "coordinate"=>{"type"=>"WGS84", "x"=>6.142455, "y"=>46.210199}, "distance"=>nil}]
 ```
 
-###Connexions
+###Connections
 
 http://transport.opendata.ch/#connections
 
 ```ruby
 require 'transprt'
-Transprt.connexions :from => 'Lausanne', :to => 'Geneva'
+Transprt.connections :from => 'Lausanne', :to => 'Geneva'
 ```
 
 ###Station board

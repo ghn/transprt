@@ -11,7 +11,6 @@ class Transprt
   # => find locations
   #
   def self.locations(parameters)
-
     allowed_parameters = ['query', 'x', 'y', 'type']
 
     query = self.create_query(parameters, allowed_parameters)
