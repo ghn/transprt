@@ -68,9 +68,11 @@ module Transprt
     end
 
     def create_query(parameters, allowed_parameters)
-      parameters.map{|k,v|
-        "#{k}=#{v}" if allowed_parameters.include? k.to_s
-      }.join('&')
+      parameters.map do |k,v|
+        next unless allowed_parameters.include?(k.to_s)
+
+        "#{k}=#{URI.escape(v)}"
+      end.join('&')
     end
   end
 end

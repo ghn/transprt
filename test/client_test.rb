@@ -37,7 +37,19 @@ class ClientTest < Minitest::Test
     skip 'feel free to add a test for Client#stationboard'
   end
 
+  def test_escaping
+    # This makes sure the umlaut below gets escaped, if not we'll see an URI::InvalidURIError
+    stub_request(:get, /.*/).to_return(status: 200, body: {'connections': nil}.to_json)
+
+    connections = @client.connections from: 'Lausanne', to: 'Zürich'
+  end
+
   def stub_response(name, url=/.*/, method=:get)
+    # Uncomment lines below should you feel the urge to test against the live API
+    # as the stubbing isn't very thorough as of now. (e.g. URLs requested aren't checked)
+    # WebMock.allow_net_connect!
+    # return
+
     dirname = File.dirname(__FILE__)
 
     content = File.read("#{dirname}/responses/#{name}")
