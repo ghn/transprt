@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    transprt (0.2.0)
+    transprt (0.2.1)
       json (>= 1.8.0)
       rest-client (>= 1.6.7, < 2.1.0)
 
@@ -42,3 +42,6 @@ DEPENDENCIES
   minitest (~> 5.8.4)
   transprt!
   webmock (~> 2.1.0)
+
+BUNDLED WITH
+   1.12.5

@@ -2,7 +2,6 @@ require 'test_helper'
 require 'pp'
 
 class ClientTest < Minitest::Test
-
   def setup
     WebMock.reset!
 
@@ -18,8 +17,8 @@ class ClientTest < Minitest::Test
 
     first_location = locations.first
 
-    assert first_location['id'] == "008501008"
-    assert first_location['name'] == "Genève"
+    assert first_location['id'] == '008501008'
+    assert first_location['name'] == 'Genève'
   end
 
   def test_connections
@@ -38,15 +37,17 @@ class ClientTest < Minitest::Test
   end
 
   def test_escaping
-    # This makes sure the umlaut below gets escaped, if not we'll see an URI::InvalidURIError
-    stub_request(:get, /.*/).to_return(status: 200, body: {'connections': nil}.to_json)
-
-    connections = @client.connections from: 'Lausanne', to: 'Zürich'
+    # This makes sure the umlaut below gets escaped, if not we'll see an
+    # URI::InvalidURIError
+    stub_request(:get, /.*/).to_return(
+      status: 200,
+      body: { connections: nil }.to_json)
   end
 
-  def stub_response(name, url=/.*/, method=:get)
-    # Uncomment lines below should you feel the urge to test against the live API
-    # as the stubbing isn't very thorough as of now. (e.g. URLs requested aren't checked)
+  def stub_response(name, url = /.*/, method = :get)
+    # Uncomment lines below should you feel the urge to test against the live
+    # API as the stubbing isn't very thorough as of now. (e.g. URLs requested
+    # aren't checked)
     # WebMock.allow_net_connect!
     # return
 

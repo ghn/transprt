@@ -4,10 +4,10 @@ require 'json'
 
 module Transprt
   class Client
-    DEFAULT_DOMAIN = 'http://transport.opendata.ch'
-    VERSION = 'v1'
+    DEFAULT_DOMAIN = 'http://transport.opendata.ch'.freeze
+    VERSION = 'v1'.freeze
 
-    def initialize(domain=DEFAULT_DOMAIN, version=VERSION)
+    def initialize(domain = DEFAULT_DOMAIN, version = VERSION)
       @domain = domain
       @version = version
     end
@@ -16,7 +16,7 @@ module Transprt
     # => find locations
     #
     def locations(parameters)
-      allowed_parameters = ['query', 'x', 'y', 'type']
+      allowed_parameters = %w(query x y type)
 
       query = create_query(parameters, allowed_parameters)
       locations = perform('locations', query)
@@ -28,8 +28,9 @@ module Transprt
     # => find connections
     #
     def connections(parameters)
-      allowed_parameters = ['from', 'to', 'via', 'date', 'time', 'isArrivalTime', 'transportations', 'limit', 'page',
-                            'direct', 'sleeper', 'couchette', 'bike']
+      allowed_parameters = %w(from to via date time isArrivalTime
+                              transportations limit page direct sleeper
+                              couchette bike)
 
       query = create_query(parameters, allowed_parameters)
       locations = perform('connections', query)
@@ -41,7 +42,7 @@ module Transprt
     # => find station boards
     #
     def stationboard(parameters)
-      allowed_parameters = ['station', 'id', 'limit', 'transportations', 'datetime']
+      allowed_parameters = %w(station id limit transportations datetime)
 
       query = create_query(parameters, allowed_parameters)
       locations = perform('stationboard', query)
@@ -50,6 +51,7 @@ module Transprt
     end
 
     private
+
     attr_reader :domain, :version
 
     def perform(endpoint, query)
@@ -68,10 +70,10 @@ module Transprt
     end
 
     def create_query(parameters, allowed_parameters)
-      parameters.map do |k,v|
+      parameters.map do |k, v|
         next unless allowed_parameters.include?(k.to_s)
 
-        "#{k}=#{URI.escape(v)}"
+        "#{k}=#{CGI.escape(v)}"
       end.join('&')
     end
   end
