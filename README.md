@@ -16,12 +16,23 @@ ruby example.rb
 
 ##Usage
 
+To talk to the API, get a client:
+
+```ruby
+require 'transprt'
+client = Transprt::Client.new
+```
+
+See below how to use this client.
+
+Hint: You may specify a mirror of the API other than http://transport.opendata.ch using the first argument of the constructor.
+
+
 ###Locations
 http://transport.opendata.ch/#locations
 
 ```ruby
-require 'transprt'
-Transprt.locations :query => 'Geneva'
+client.locations query: 'Geneva'
 # => [{"id"=>"008501008", "name"=>"Genève", "score"=>"101", "coordinate"=>{"type"=>"WGS84", "x"=>6.142455, "y"=>46.210199}, "distance"=>nil}]
 ```
 
@@ -30,8 +41,7 @@ Transprt.locations :query => 'Geneva'
 http://transport.opendata.ch/#connections
 
 ```ruby
-require 'transprt'
-Transprt.connections :from => 'Lausanne', :to => 'Geneva'
+client.connections from: 'Lausanne', to: 'Geneva'
 ```
 
 ###Station board
@@ -40,7 +50,15 @@ http://transport.opendata.ch/#stationboard
 
 ```ruby
 # Display station board
-Transprt.stationboard :station => 'Lausanne'
+client.stationboard station: 'Lausanne'
+```
+
+## Development
+
+Running the tests
+
+```bash
+rake test
 ```
 
 ##Licence

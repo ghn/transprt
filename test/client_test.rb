@@ -5,12 +5,14 @@ class ClientTest < Minitest::Test
 
   def setup
     WebMock.reset!
+
+    @client = Transprt::Client.new
   end
 
   def test_locations
     stub_response('client_test_test_locations.json')
 
-    locations = Transprt.locations :query => 'genf'
+    locations = @client.locations query: 'genf'
 
     assert locations.length == 1
 
@@ -23,12 +25,16 @@ class ClientTest < Minitest::Test
   def test_connections
     stub_response('client_test_test_connections.json')
 
-    connections = Transprt.connections :from => 'Lausanne', :to => 'Geneve'
+    connections = @client.connections from: 'Lausanne', to: 'Geneve'
 
     first_connection = connections.first
 
     assert first_connection['from']['station']['name'] == 'Lausanne'
     assert first_connection['to']['station']['name'] == 'Genève'
+  end
+
+  def test_stationboard
+    skip 'feel free to add a test for Client#stationboard'
   end
 
   def stub_response(name, url=/.*/, method=:get)

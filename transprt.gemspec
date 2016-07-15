@@ -3,11 +3,11 @@ lib = File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name = "transprt"
-  gem.version = '0.1.3'
+  gem.version = '0.2.0'
   gem.authors = ["ghn"]
   gem.email = ["ghugon@gmail.com"]
-  gem.description = %q{Use the Swiss public transport API (open data).}
-  gem.summary = "Swiss public transport."
+  gem.description = %q{Ruby client for the Swiss public transport API}
+  gem.summary = "Swiss public transport API"
   gem.homepage = 'https://github.com/ghn/transprt'
   gem.license = "MIT"
 
