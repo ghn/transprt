@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/transprt.png)](http://badge.fury.io/rb/transprt)
 [![Dependency Status](https://gemnasium.com/ghn/transprt.png)](https://gemnasium.com/ghn/transprt)
+[![Build Status](https://travis-ci.org/ghn/transprt.svg?branch=master)](https://travis-ci.org/ghn/transprt)
 
 Ruby client for the Swiss public transport API at http://transport.opendata.ch
 
