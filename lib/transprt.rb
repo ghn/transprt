@@ -2,61 +2,77 @@ require 'rubygems'
 require 'rest_client'
 require 'json'
 
-class Transprt
+module Transprt
+  class Client
+    DEFAULT_DOMAIN = 'http://transport.opendata.ch'
+    VERSION = 'v1'
 
-  @domain = 'http://transport.opendata.ch'
-  @version = 'v1'
+    def initialize(domain=DEFAULT_DOMAIN, version=VERSION)
+      @domain = domain
+      @version = version
+    end
 
-  #
-  # => find locations
-  #
-  def self.locations(parameters)
+    #
+    # => find locations
+    #
+    def locations(parameters)
+      allowed_parameters = ['query', 'x', 'y', 'type']
 
-    allowed_parameters = ['query', 'x', 'y', 'type']
+      query = create_query(parameters, allowed_parameters)
+      locations = perform('locations', query)
 
-    query = self.create_query(parameters, allowed_parameters)
+      locations['stations']
+    end
 
-    locations = JSON.parse(RestClient.get self.create_url('locations') + query)
+    #
+    # => find connections
+    #
+    def connections(parameters)
+      allowed_parameters = ['from', 'to', 'via', 'date', 'time', 'isArrivalTime', 'transportations', 'limit', 'page',
+                            'direct', 'sleeper', 'couchette', 'bike']
 
-    locations['stations']
-  end
+      query = create_query(parameters, allowed_parameters)
+      locations = perform('connections', query)
 
-  #
-  # => find connections
-  #
-  def self.connections(parameters)
-    allowed_parameters = ['from', 'to', 'via', 'date', 'time', 'isArrivalTime', 'transportations', 'limit', 'page',
-      'direct', 'sleeper', 'couchette', 'bike']
+      locations['connections']
+    end
 
-    query = self.create_query(parameters, allowed_parameters)
+    #
+    # => find station boards
+    #
+    def stationboard(parameters)
+      allowed_parameters = ['station', 'id', 'limit', 'transportations', 'datetime']
 
-    locations = JSON.parse(RestClient.get self.create_url('connections') + query)
+      query = create_query(parameters, allowed_parameters)
+      locations = perform('stationboard', query)
 
-    locations['connections']
-  end
+      locations['stationboard']
+    end
 
-  #
-  # => find station boards
-  #
-  def self.stationboard(parameters)
-    allowed_parameters = ['station', 'id', 'limit', 'transportations', 'datetime']
+    private
+    attr_reader :domain, :version
 
-    query = self.create_query(parameters, allowed_parameters)
+    def perform(endpoint, query)
+      url = "#{create_url(endpoint)}#{query}"
+      response = RestClient.get(url)
 
-    locations = JSON.parse(RestClient.get self.create_url('stationboard') + query)
+      # Uncomment the line below to dump the response in order to generate
+      # a file to use as response stub in tests.
+      # File.write('/tmp/response.json', response)
 
-    locations['stationboard']
-  end
+      JSON.parse(response)
+    end
 
-  private
+    def create_url(endpoint)
+      [domain, version, endpoint].join('/') + '?'
+    end
 
-  def self.create_url(base)
-    [@domain, @version, base].join('/') + '?'
-  end
+    def create_query(parameters, allowed_parameters)
+      parameters.map do |k,v|
+        next unless allowed_parameters.include?(k.to_s)
 
-  def self.create_query(parameters, allowed_parameters)
-    query = parameters.map{|k,v|
-        "#{k}=#{v}" if allowed_parameters.include? k.to_s
-    }.join('&')
+        "#{k}=#{URI.escape(v)}"
+      end.join('&')
+    end
   end
 end

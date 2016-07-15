@@ -1,5 +1,6 @@
 require File.join(File.dirname(__FILE__), 'lib/transprt')
 
-puts Transprt.locations :query => 'genf'
-puts Transprt.connections :from => 'Lausanne', :to => 'Geneve'
-puts Transprt.locations :station => 'Aarau'
+client = Transprt::Client.new
+puts client.locations query: 'genf'
+puts client.connections from: 'Lausanne', to: 'Geneve'
+puts client.locations station: 'Aarau'
