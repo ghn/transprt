@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Transprt by ghn</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
@@ -40,7 +40,7 @@
       </nav>
       <section>
         <h1>
-<a name="transprt" class="anchor" href="#transprt"><span class="octicon octicon-link"></span></a>transprt</h1>
+<a id="transprt" class="anchor" href="#transprt" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>transprt</h1>
 
 <p><a href="http://badge.fury.io/rb/transprt"><img src="https://badge.fury.io/rb/transprt.png" alt="Gem Version"></a>
 <a href="https://gemnasium.com/ghn/transprt"><img src="https://gemnasium.com/ghn/transprt.png" alt="Dependency Status"></a></p>
@@ -48,47 +48,43 @@
 <p>Use the Swiss public transport API (open data). <a href="http://transport.opendata.ch">http://transport.opendata.ch</a></p>
 
 <h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight highlight-bash"><pre>gem install transprt
+<div class="highlight highlight-source-shell"><pre>gem install transprt
 
-<span class="c">#run example</span>
-ruby example.rb
-</pre></div>
+<span class="pl-c">#run example</span>
+ruby example.rb</pre></div>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
 <h3>
-<a name="locations" class="anchor" href="#locations"><span class="octicon octicon-link"></span></a>Locations</h3>
+<a id="locations" class="anchor" href="#locations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Locations</h3>
 
 <p><a href="http://transport.opendata.ch/#locations">http://transport.opendata.ch/#locations</a></p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'transprt'</span>
-<span class="no">Transprt</span><span class="o">.</span><span class="n">locations</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'Geneva'</span>
-<span class="c1"># =&gt; [{"id"=&gt;"008501008", "name"=&gt;"Genève", "score"=&gt;"101", "coordinate"=&gt;{"type"=&gt;"WGS84", "x"=&gt;6.142455, "y"=&gt;46.210199}, "distance"=&gt;nil}]</span>
-</pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>transprt<span class="pl-pds">'</span></span>
+<span class="pl-c1">Transprt</span>.locations <span class="pl-c1">:query</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Geneva<span class="pl-pds">'</span></span>
+<span class="pl-c"># =&gt; [{"id"=&gt;"008501008", "name"=&gt;"Genève", "score"=&gt;"101", "coordinate"=&gt;{"type"=&gt;"WGS84", "x"=&gt;6.142455, "y"=&gt;46.210199}, "distance"=&gt;nil}]</span></pre></div>
 
 <h3>
-<a name="connexions" class="anchor" href="#connexions"><span class="octicon octicon-link"></span></a>Connexions</h3>
+<a id="connexions" class="anchor" href="#connexions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connexions</h3>
 
 <p><a href="http://transport.opendata.ch/#connections">http://transport.opendata.ch/#connections</a></p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'transprt'</span>
-<span class="no">Transprt</span><span class="o">.</span><span class="n">connexions</span> <span class="ss">:from</span> <span class="o">=&gt;</span> <span class="s1">'Lausanne'</span><span class="p">,</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s1">'Geneva'</span>
-</pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>transprt<span class="pl-pds">'</span></span>
+<span class="pl-c1">Transprt</span>.connexions <span class="pl-c1">:from</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Lausanne<span class="pl-pds">'</span></span>, <span class="pl-c1">:to</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Geneva<span class="pl-pds">'</span></span></pre></div>
 
 <h3>
-<a name="station-board" class="anchor" href="#station-board"><span class="octicon octicon-link"></span></a>Station board</h3>
+<a id="station-board" class="anchor" href="#station-board" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Station board</h3>
 
 <p><a href="http://transport.opendata.ch/#stationboard">http://transport.opendata.ch/#stationboard</a></p>
 
-<div class="highlight highlight-ruby"><pre><span class="c1"># Display station board</span>
-<span class="no">Transprt</span><span class="o">.</span><span class="n">stationboard</span> <span class="ss">:station</span> <span class="o">=&gt;</span> <span class="s1">'Lausanne'</span>
-</pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Display station board</span>
+<span class="pl-c1">Transprt</span>.stationboard <span class="pl-c1">:station</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Lausanne<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
-<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h2>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licence</h2>
 
 <p>MIT License (MIT)</p>
       </section>
