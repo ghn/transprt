@@ -37,11 +37,13 @@ class ClientTest < Minitest::Test
   end
 
   def test_escaping
-    # This makes sure the umlaut below gets escaped, if not we'll see an
-    # URI::InvalidURIError
     stub_request(:get, /.*/).to_return(
       status: 200,
       body: { connections: nil }.to_json)
+
+    # The following line fails with an URI::InvalidURIError
+    # should the umlaut in 'Zurich' not get escaped.
+    connections = @client.connections from: 'Lausanne', to: 'Zürich'
   end
 
   def stub_response(name, url = /.*/, method = :get)
