@@ -2,6 +2,8 @@ require 'rubygems'
 require 'rest_client'
 require 'json'
 
+require_relative 'rate_limiting'
+
 module Transprt
   class Client
     DEFAULT_DOMAIN = 'http://transport.opendata.ch'.freeze
@@ -56,7 +58,8 @@ module Transprt
 
     def perform(endpoint, query)
       url = "#{create_url(endpoint)}#{query}"
-      response = RestClient.get(url)
+
+      response = limiter.get(url)
 
       # Uncomment the line below to dump the response in order to generate
       # a file to use as response stub in tests.
@@ -75,6 +78,10 @@ module Transprt
 
         "#{k}=#{CGI.escape(v)}"
       end.join('&')
+    end
+
+    def limiter
+      @limiter ||= RateLimiting.new
     end
   end
 end
