@@ -62,6 +62,6 @@ Running the tests
 rake test
 ```
 
-##Licence
+## License
 
 MIT License (MIT)
