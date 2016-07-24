@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'transprt'
-  gem.version = '0.2.1'
+  gem.version = '0.2.2'
   gem.authors = ['ghn']
   gem.email = ['ghugon@gmail.com']
   gem.description = 'Ruby client for the Swiss public transport API'
