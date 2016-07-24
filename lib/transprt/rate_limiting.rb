@@ -4,8 +4,8 @@ module Transprt
 
     # @param wait_for_quota [Boolean] whether to wait for quota reset
     #        and query again if the rate limit (300 requests/s) is exceeded.
-    def initialize(wait_for_quota=true)
-      @wait_for_quota = true
+    def initialize(wait_for_quota = true)
+      @wait_for_quota = wait_for_quota
     end
 
     # @return The HTTP response or nil if we're hitting the rate limit and

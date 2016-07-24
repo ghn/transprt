@@ -43,7 +43,7 @@ class ClientTest < Minitest::Test
 
     # The following line fails with an URI::InvalidURIError
     # should the umlaut in 'Zurich' not get escaped.
-    connections = @client.connections from: 'Lausanne', to: 'Zürich'
+    @client.connections from: 'Lausanne', to: 'Zürich'
   end
 
   def test_rate_limit
@@ -56,18 +56,14 @@ class ClientTest < Minitest::Test
         # Mock "rate limit hit" response code
         { status: 429,
           headers: { 'X-Rate-Limit-Reset' => Time.now.to_i.to_s } }
-
       elsif request_count == 2 # Second request succeeds.
-        { status: 200,
-          body: { connections: nil }.to_json }
-
+        { status: 200, body: { connections: nil }.to_json }
       else
         raise "Did not expect request_count to be #{request_count}"
       end
     end
 
-    connections = @client.connections from: 'Lausanne', to: 'Bern'
-
+    @client.connections from: 'Lausanne', to: 'Bern'
     assert request_count == 2
   end
 
