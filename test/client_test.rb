@@ -37,11 +37,38 @@ class ClientTest < Minitest::Test
   end
 
   def test_escaping
-    # This makes sure the umlaut below gets escaped, if not we'll see an
-    # URI::InvalidURIError
     stub_request(:get, /.*/).to_return(
       status: 200,
       body: { connections: nil }.to_json)
+
+    # The following line fails with an URI::InvalidURIError
+    # should the umlaut in 'Zurich' not get escaped.
+    connections = @client.connections from: 'Lausanne', to: 'Zürich'
+  end
+
+  def test_rate_limit
+    request_count = 0
+
+    stub_request(:get, /.*/).to_return do
+      request_count += 1
+
+      if request_count == 1 # First request fails.
+        # Mock "rate limit hit" response code
+        { status: 429,
+          headers: { 'X-Rate-Limit-Reset' => Time.now.to_i.to_s } }
+
+      elsif request_count == 2 # Second request succeeds.
+        { status: 200,
+          body: { connections: nil }.to_json }
+
+      else
+        raise "Did not expect request_count to be #{request_count}"
+      end
+    end
+
+    connections = @client.connections from: 'Lausanne', to: 'Bern'
+
+    assert request_count == 2
   end
 
   def stub_response(name, url = /.*/, method = :get)
