@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    transprt (0.2.1)
-      json
-      rest-client
+    transprt (0.2.2)
+      json (~> 2.0)
+      rest-client (~> 2.0)
 
 GEM
   remote: http://rubygems.org/
@@ -16,11 +16,11 @@ GEM
     hashdiff (0.3.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    json (2.0.1)
+    json (2.0.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    minitest (5.8.4)
+    minitest (5.9.0)
     netrc (0.11.0)
     rake (11.2.2)
     rest-client (2.0.0)
@@ -40,11 +40,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
-  minitest (~> 5.8.4)
-  rake
+  bundler (~> 1.12)
+  minitest (~> 5.8)
+  rake (~> 11.2)
   transprt!
-  webmock (~> 2.1.0)
+  webmock (~> 2.1)
 
 BUNDLED WITH
    1.12.5
