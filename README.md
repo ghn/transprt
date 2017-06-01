@@ -1,4 +1,4 @@
-#transprt
+# transprt
 
 [![Gem Version](https://badge.fury.io/rb/transprt.svg)](https://badge.fury.io/rb/transprt)
 [![Dependency Status](https://gemnasium.com/badges/github.com/ghn/transprt.svg)](https://gemnasium.com/github.com/ghn/transprt)
@@ -6,7 +6,7 @@
 
 Ruby client for the Swiss public transport API at http://transport.opendata.ch
 
-##Installation
+## Installation
 
 ```bash
 gem install transprt
@@ -15,7 +15,7 @@ gem install transprt
 ruby example.rb
 ```
 
-##Usage
+## Usage
 
 To talk to the API, get a client:
 
@@ -29,7 +29,7 @@ See below how to use this client.
 Hint: You may specify a mirror of the API other than http://transport.opendata.ch using the first argument of the constructor.
 
 
-###Locations
+### Locations
 http://transport.opendata.ch/#locations
 
 ```ruby
@@ -37,7 +37,7 @@ client.locations query: 'Geneva'
 # => [{"id"=>"008501008", "name"=>"Genève", "score"=>"101", "coordinate"=>{"type"=>"WGS84", "x"=>6.142455, "y"=>46.210199}, "distance"=>nil}]
 ```
 
-###Connections
+### Connections
 
 http://transport.opendata.ch/#connections
 
@@ -45,7 +45,7 @@ http://transport.opendata.ch/#connections
 client.connections from: 'Lausanne', to: 'Geneva'
 ```
 
-###Station board
+### Station board
 
 http://transport.opendata.ch/#stationboard
 
